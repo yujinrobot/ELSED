@@ -288,6 +288,11 @@ void ELSED::drawAnchorPoints(const uint8_t *dirImg,
         // Get the segment angle
         Segment s = detectedSeg.getEndpoints();
 
+        if( std::abs( s[0]-s[2] ) <= 1.0f && std::abs( s[1]-s[3] ) <= 1.0f )
+        {
+          continue;
+        }
+
 #if UPM_ABS_DIR_CHECKER == 1        
         theta = PI2PI( std::atan2( s[3]-s[1], s[2]-s[0] ) + M_PI_2 );
 #else 
